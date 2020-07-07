@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h2 style="text-align: center;">Login with Social Media or Login manually or Register Manually</h2>
+        <h3 style="text-align: center;color: red;" th:if="${errormessage}">
+            <span th:text="${errormessage}"></span>
+        </h3>
+        <div class="vl">
+            <span class="vl-innertext">or</span>
+        </div>
+        <div class="ul">
+            <span class="ul-innertext">or</span>
+        </div>
+        <div class="col">
+            <a th:href="@{'/facebooklogin'}" class="fb btn">
+                <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+            </a>
+        </div>
+        <div class="col">
+            <div class="hide-md-lg">
+                <p>Or sign in manually:</p>
+            </div>
+            <form th:action="@{'/login'}" method="post">
+                <input type="text" name="email" placeholder="email" required="required"/>
+                <input type="password" name="password" placeholder="password" required="required"/>
+                <input type="submit" value="login"/>
+            </form>
+        </div>
+        <div class="col">
+            <div class="hide-md-lg">
+                <p>Or sign up manually:</p>
+            </div>
+            <form th:action="@{'/register'}" th:object="${user}" method="post">
+                <input type="text" name="firstName" placeholder="first name" required="required" th:field="*{firstName}"/>
+                <input type="text" name="lastName" placeholder="last name" required="required" th:field="*{lastName}"/>
+                <input type="text" name="email" placeholder="email" required="required" th:field="*{email}"/>
+                <input type="password" name="password" placeholder="password" required="required" th:field="*{password}"/>
+                <input type="submit" value="Register"/>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
